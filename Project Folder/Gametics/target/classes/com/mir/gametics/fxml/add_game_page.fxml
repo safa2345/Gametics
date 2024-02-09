@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mir.gametics.AddGamePageController">
+    <Label layoutX="584.0" layoutY="56.0" text="Add Game" />
+    <TextField fx:id="nameTextField" layoutX="149.0" layoutY="114.0" prefHeight="26.0" prefWidth="202.0" promptText="Enter Game Name" />
+    <ComboBox fx:id="selectCategory" editable="true" layoutX="148.0" layoutY="154.0" prefHeight="26.0" prefWidth="202.0" promptText="Enter / Select a Category " />
+    <Button fx:id="addGameButton" layoutX="575.0" layoutY="741.0" mnemonicParsing="false" text="Add Game" />
+    <ComboBox fx:id="selectDeveloper" editable="true" layoutX="146.0" layoutY="190.0" prefHeight="26.0" prefWidth="202.0" promptText="Enter / Select Developer" />
+    <ComboBox fx:id="selectPublisher" editable="true" layoutX="146.0" layoutY="229.0" prefHeight="26.0" prefWidth="202.0" promptText="Enter / Select Publisher" />
+    <ComboBox fx:id="selectLanguage" editable="true" layoutX="146.0" layoutY="306.0" prefHeight="26.0" prefWidth="202.0" promptText="Select Language" />
+    <DatePicker fx:id="datePicker" editable="false" layoutX="146.0" layoutY="352.0" prefHeight="26.0" prefWidth="251.0" promptText="Enter Release Date (yyyy-mm-dd)" />
+    <TextField fx:id="priceTextField" layoutX="146.0" layoutY="400.0" promptText="Enter Price ($)" />
+    <TextArea fx:id="descriptionTextArea" layoutX="147.0" layoutY="446.0" prefHeight="269.0" prefWidth="377.0" promptText="Enter Short Description of Games(Not More than 1000 words)" />
+    <Pane layoutX="632.0" layoutY="93.0" prefHeight="320.0" prefWidth="524.0">
+            <Label layoutX="168.0" layoutY="26.0" text="Minimum Requirement" />
+            <CheckComboBox fx:id="selectOS" layoutX="25.0" layoutY="66.0" prefHeight="26.0" prefWidth="235.0" title="Enter Required OS" />
+            <CheckComboBox fx:id="selectProcessor" layoutX="25.0" layoutY="105.0" prefHeight="26.0" prefWidth="235.0" title="Select Required Processor" />
+            <Label layoutX="284.0" layoutY="109.0" text="or" />
+            <TextField fx:id="processorTextField" layoutX="338.0" layoutY="105.0" promptText="Enter New Processor" />
+            <CheckComboBox fx:id="selectGraphics" layoutX="27.0" layoutY="185.0" prefHeight="26.0" prefWidth="235.0" title="Select Required Graphics Card" />
+            <Label layoutX="284.0" layoutY="189.0" text="or" />
+            <TextField fx:id="graphicsTextField" layoutX="338.0" layoutY="185.0" promptText="Enter New Graphics" />
+            <ComboBox fx:id="selectMemory" layoutX="24.0" layoutY="144.0" prefHeight="26.0" prefWidth="235.0" promptText="Select Required Memory" />
+            <ComboBox fx:id="selectDirectX" layoutX="27.0" layoutY="223.0" prefHeight="26.0" prefWidth="222.0" promptText="Select DirectX Version" />
+            <ComboBox fx:id="selectStorage" layoutX="27.0" layoutY="267.0" prefWidth="150.0" promptText="Select Storage" />
+    </Pane>
+    <Pane layoutX="632.0" layoutY="407.0" prefHeight="320.0" prefWidth="524.0">
+        <Label layoutX="168.0" layoutY="26.0" text="Recommended Requirement" />
+        <CheckComboBox layoutX="25.0" layoutY="66.0" prefHeight="26.0" prefWidth="235.0" title="Enter Required OS" />
+        <CheckComboBox layoutX="25.0" layoutY="105.0" prefHeight="26.0" prefWidth="235.0" title="Select Required Processor" />
+        <Label layoutX="284.0" layoutY="109.0" text="or" />
+        <TextField layoutX="338.0" layoutY="105.0" promptText="Enter New Processor" />
+        <CheckComboBox layoutX="22.0" layoutY="185.0" prefHeight="26.0" prefWidth="242.0" title="Select Required Graphics Card" />
+        <Label layoutX="284.0" layoutY="189.0" text="or" />
+        <TextField layoutX="338.0" layoutY="185.0" promptText="Enter New Graphics" />
+        <ComboBox layoutX="24.0" layoutY="144.0" prefHeight="26.0" prefWidth="235.0" promptText="Select Required Memory" />
+        <ComboBox layoutX="22.0" layoutY="222.0" prefHeight="26.0" prefWidth="216.0" promptText="Select DirectX Version" />
+        <ComboBox layoutX="22.0" layoutY="265.0" prefWidth="150.0" promptText="Select Storage" />
+
+    </Pane>
+   <ComboBox fx:id="selectPopularity" layoutX="146.0" layoutY="265.0" prefHeight="26.0" prefWidth="202.0" promptText="Select Popularity" />
+   <Button fx:id="backButton" layoutX="23.0" layoutY="741.0" mnemonicParsing="false" text="Back" />
+</AnchorPane>

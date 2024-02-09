@@ -1,0 +1,322 @@
+use gametics
+
+CREATE TABLE Users
+(
+    user_id       int primary key IDENTITY (1,1),
+    user_name     varchar(100),
+    user_email    VARCHAR(100),
+    user_password varchar(100)
+);
+
+create table GamesBasicInfo
+(
+    game_id           int primary key identity (1,1),
+    game_name         varchar(100)  not null,
+    game_release_date date          not null,
+    game_price        decimal(6, 2) not null,
+)
+
+create table Category
+(
+    category_id   int primary key identity (1,1),
+    category_name varchar(100) not null
+)
+
+create table GameCategory
+(
+    game_id     int primary key,
+    category_id int not null,
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (category_id) references Category (category_id)
+)
+
+alter table GamesBasicInfo
+    ADD game_poster varbinary(max), gameplay_picture varbinary(max), game_description varchar(500)
+
+create table Memory
+(
+    memory_id    int primary key identity (1,1),
+    memory_value varchar(100) not null
+)
+
+CREATE TABLE GameMinMemory
+(
+    game_id   int,
+    memory_id int,
+    primary key (game_id, memory_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (memory_id) references Memory (memory_id)
+
+)
+
+create table Developer
+(
+    developer_id   int primary key identity (1,1),
+    developer_name varchar(100) not null
+)
+
+create table GameDeveloper
+(
+    game_id      int primary key,
+    developer_id int not null,
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (developer_id) references Developer (developer_id)
+)
+
+
+UPDATE GamesBasicInfo(game_poster)
+values ((SELECT * FROM OPENROWSET (BULK '/userdata/Desktop/picture/age_of_empires_IV_poster.png', SINGLE_BLOB)))
+
+
+select GamesBasicInfo.game_name,
+       Developer.developer_name,
+       Category.category_name,
+       GamesBasicInfo.game_release_date,
+       GamesBasicInfo.game_price,
+       GamesBasicInfo.game_poster,
+       GamesBasicInfo.gameplay_picture,
+       GamesBasicInfo.game_description
+from GamesBasicInfo
+         INNER JOIN GameCategory on GamesBasicInfo.game_id = GameCategory.game_id
+         INNER JOIN Category on Category.category_id = GameCategory.category_id
+         INNER JOIN GameDeveloper on GamesBasicInfo.game_id = GameDeveloper.game_id
+         INNER JOIN Developer on GameDeveloper.developer_id = Developer.developer_id
+where game_release_date >= '2020-01-01'
+
+
+
+create table OS
+(
+    os_id   int primary key identity (1,1),
+    os_name varchar(100)
+)
+create table GameOS
+(
+    game_id int,
+    os_id   int not null,
+    primary key (game_id, os_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (os_id) references OS (os_id)
+)
+
+CREATE TABLE Processor
+(
+    processor_id   INT PRIMARY KEY IDENTITY (1,1),
+    processor_name VARCHAR(100)
+)
+CREATE TABLE GameProcessor
+(
+    game_id      int,
+    processor_id int not null,
+    primary key (game_id, processor_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (processor_id) references Processor (processor_id)
+)
+
+CREATE TABLE Graphics
+(
+    graphics_id   INT PRIMARY KEY IDENTITY (1,1),
+    graphics_name VARCHAR(100)
+)
+CREATE TABLE GameMinGraphics
+(
+    game_id     int,
+    graphics_id int not null,
+    primary key (game_id, graphics_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (graphics_id) references Graphics (graphics_id)
+)
+
+CREATE TABLE DirectX
+(
+    directx_id   INT PRIMARY KEY IDENTITY (1,1),
+    directx_name VARCHAR(100)
+)
+CREATE TABLE GameMinDirectX
+(
+    game_id     int,
+    directx_id int not null,
+    primary key (game_id, directx_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (directx_id) references DirectX (directx_id)
+)
+
+create table Storage
+(
+    storage_id    int primary key identity (1,1),
+    storage_value int not null
+)
+CREATE TABLE GameStorage
+(
+    game_id     int,
+    storage_id int not null,
+    primary key (game_id, storage_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (storage_id) references Storage (storage_id)
+)
+
+CREATE TABLE Review
+(
+    review_id   INT PRIMARY KEY IDENTITY (1, 1),
+    review_value    VARCHAR(100)
+)
+CREATE TABLE GameReview
+(
+    game_id INT,
+    review_id INT,
+    PRIMARY KEY (game_id, review_id),
+    FOREIGN KEY (game_id) REFERENCES GamesBasicInfo (game_id),
+    FOREIGN KEY (review_id) REFERENCES Review (review_id)
+);
+
+create table Publisher
+(
+    publisher_id   int primary key identity (1,1),
+    publisher_name varchar(100) not null
+)
+create table GamePublisher
+(
+    game_id      int,
+    publisher_id int,
+    primary key (game_id, publisher_id),
+    foreign key (game_id) references GamesBasicInfo (game_id),
+    foreign key (publisher_id) references Publisher(publisher_id)
+)
+
+create table Language(
+        language_id int primary key identity (1,1),
+        language_name varchar(100),
+)
+create TABLE GameLanguage(
+                             game_id      int,
+                             language_id int,
+                             primary key (game_id, language_id),
+                             foreign key (game_id) references GamesBasicInfo (game_id),
+                             foreign key (language_id) references Language(language_id)
+)
+
+
+select STRING_AGG(OS.os_name, ',')
+from GamesBasicInfo
+         JOIN GameOS
+              on GamesBasicInfo.game_id = GameOS.game_id
+         join OS
+              on OS.os_id = GameOS.os_id and GamesBasicInfo.game_id = GameOS.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select STRING_AGG(Processor.processor_name, ' , ')
+from GamesBasicInfo
+         JOIN GameProcessor
+              on GamesBasicInfo.game_id = GameProcessor.game_id
+         join Processor
+              on Processor.processor_id = GameProcessor.processor_id and GamesBasicInfo.game_id = GameProcessor.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select STRING_AGG(Memory.memory_value, ' , ')
+from GamesBasicInfo
+         JOIN GameMinMemory
+              on GamesBasicInfo.game_id = GameMinMemory.game_id
+         join Memory
+              on Memory.memory_id = GameMinMemory.memory_id and GamesBasicInfo.game_id = GameMinMemory.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select STRING_AGG(Graphics.graphics_name, ' , ')
+from GamesBasicInfo
+         JOIN GameMinGraphics
+              on GamesBasicInfo.game_id = GameMinGraphics.game_id
+         join Graphics
+              on Graphics.graphics_id = GameMinGraphics.graphics_id and GamesBasicInfo.game_id = GameMinGraphics.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select STRING_AGG(DirectX.directx_name, ' , ')
+from GamesBasicInfo
+         JOIN GameMinDirectX
+              on GamesBasicInfo.game_id = GameMinDirectX.game_id
+         join DirectX
+              on DirectX.directx_id = GameMinDirectX.directx_id and GamesBasicInfo.game_id = GameMinDirectX.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select Storage.storage_value
+from GamesBasicInfo
+         JOIN GameStorage
+              on GamesBasicInfo.game_id = GameStorage.game_id
+         join Storage
+              on Storage.storage_id = GameStorage.storage_id and GamesBasicInfo.game_id = GameStorage.game_id
+where GamesBasicInfo.game_id = 2
+group by Storage.storage_value
+
+select Review.review_value
+from GamesBasicInfo
+         JOIN GameReview
+              on GamesBasicInfo.game_id = GameReview.game_id
+         join Review
+              on Review.review_id = GameReview.review_id and GamesBasicInfo.game_id = GameReview.game_id
+where GamesBasicInfo.game_id = 2
+group by Review.review_value
+
+select Publisher.publisher_name
+from GamesBasicInfo
+         JOIN GamePublisher
+              on GamesBasicInfo.game_id = GamePublisher.game_id
+         join Publisher
+              on Publisher.publisher_id = GamePublisher.publisher_id and GamesBasicInfo.game_id = GamePublisher.game_id
+where GamesBasicInfo.game_id = 2
+group by Publisher.publisher_name
+
+select STRING_AGG(Language.language_name, ' , ')
+from GamesBasicInfo
+         JOIN GameLanguage
+              on GamesBasicInfo.game_id = GameLanguage.game_id
+         join Language
+              on Language.language_id = GameLanguage.language_id and GamesBasicInfo.game_id = GameLanguage.game_id
+where GamesBasicInfo.game_id = 2
+group by GamesBasicInfo.game_id
+
+select developer_name from Developer
+where developer_name = 'Relic Entertainment'
+
+select * from GamesBasicInfo
+
+create table AdminPassword(
+    admin_password varchar(10)
+)
+
+insert into AdminPassword VALUES ('1234567890')
+
+select * from AdminPassword where admin_password = '1234567890'
+
+insert into Memory(memory_value)
+VALUES ('1 GB'), ('2 GB'), ('4 GB'), ('8 GB'), ('12 GB'), ('16 GB'), ('32 GB')
+
+insert into Storage(storage_value)
+VALUES (4),(10),(20), (30), (50), (60), (80), (100), (120), (150)
+
+insert into GameStorage VALUES (21,6)
+insert into GameMinMemory VALUES (1,4)
+
+delete from GameStorage
+where storage_id = 6
+
+select * from GameMinMemory
+select * from GameStorage
+
+select game_name from GamesBasicInfo
+where game_name like '%age%'
+
+select GamesBasicInfo.game_name
+from GamesBasicInfo
+INNER JOIN GameMinMemory on GamesBasicInfo.game_id = GameMinMemory.game_id
+INNER JOIN Memory on GameMinMemory.memory_id = Memory.memory_id
+
+select GamesBasicInfo.game_name
+from GamesBasicInfo
+         INNER JOIN GameMinMemory on GamesBasicInfo.game_id = GameMinMemory.game_id
+         INNER JOIN Memory on Memory.memory_id = GameMinMemory.memory_id
+where memory_value = '8 GB'
+
+select * from GameMinMemory

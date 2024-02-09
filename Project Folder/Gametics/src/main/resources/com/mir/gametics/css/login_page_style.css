@@ -1,0 +1,65 @@
+.root {
+    -fx-font-family: "Comic Sans MS";
+    -fx-background-color: #1D1F21;
+}
+
+#login_title {
+    -fx-font-size: 40px;
+    -fx-text-fill: #D9DBDE;
+}
+
+.transparent-button-white-border {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-text-fill: whitesmoke;
+}
+
+.bg-image {
+    -fx-background-image: url("../picture/background.png");
+    -fx-background-size: stretch;
+    -fx-background-position: center center;
+    -fx-background-repeat: stretch;
+}
+
+.label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #D9DBDE;
+}
+
+.input-field {
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #0598ff;
+}
+
+.icon {
+    -fx-fill: #0598ff;
+}
+
+#login_button {
+    -fx-font-weight: Bold;
+    -fx-font-size: 20px;
+    -fx-background-color: #0598ff;
+    -fx-background-radius: 5px;
+}
+
+.hyperlink {
+    -fx-font-size: 16px;
+    -fx-underline: true;
+}
+
+.text-field {
+    -fx-text-fill: #D9DBDE;
+}
+.password-field {
+    -fx-text-fill: #D9DBDE;
+}
+
+.hyperlink:hover,
+.hyperlink:hover:visited {
+    -fx-text-fill: #6494E6 ;
+}

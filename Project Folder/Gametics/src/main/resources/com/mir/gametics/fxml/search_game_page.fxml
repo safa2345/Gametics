@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mir.gametics.SearchGamePageController">
+
+    <TextField fx:id="titleField" layoutX="931.0" layoutY="69.0" prefHeight="26.0" prefWidth="255.0" promptText="Enter Game Title" />
+    <Label layoutX="535.0" layoutY="28.0" text="Search Games" />
+    <CheckBox fx:id="exactMatchingCheckBox" layoutX="968.0" layoutY="701.0" mnemonicParsing="false" text="Exact Matching" />
+    <Label layoutX="931.0" layoutY="116.0" text="Advanced Searching Options" />
+    <Button fx:id="searchButton" layoutX="1003.0" layoutY="750.0" mnemonicParsing="false" text="Search" />
+    <Slider blockIncrement="20.0" layoutX="935.0" layoutY="642.0" max="200.0" prefHeight="40.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" />
+    <DatePicker layoutX="933.0" layoutY="517.0" />
+    <TableView fx:id="tableView" layoutY="72.0" prefHeight="725.0" prefWidth="901.0" />
+    <Label layoutX="935.0" layoutY="488.0" text="Show Games From" />
+    <Label layoutX="935.0" layoutY="559.0" text="To" />
+    <DatePicker layoutX="933.0" layoutY="577.0" />
+    <Label layoutX="935.0" layoutY="612.0" text="Price Below (&lt;)" />
+   <ComboBox fx:id="memoryComboBox" layoutX="929.0" layoutY="248.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Memory (GB)" />
+   <ComboBox fx:id="categoryComboBox" layoutX="929.0" layoutY="161.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Category" />
+   <ComboBox fx:id="processorComboBox" layoutX="928.0" layoutY="205.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Processor" />
+   <ComboBox fx:id="graphicsCardComboBox" layoutX="929.0" layoutY="337.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Gaphics Card" />
+   <ComboBox fx:id="graphicsCardMemoryComboBox" layoutX="929.0" layoutY="387.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Graphics Memory" />
+   <ComboBox fx:id="popularityComboBox" layoutX="928.0" layoutY="435.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Popularity" />
+   <ComboBox fx:id="storageComboBox" layoutX="928.0" layoutY="293.0" prefHeight="26.0" prefWidth="189.0" promptText="Select Storage (GB)" />
+   <Button fx:id="backButton" layoutX="913.0" layoutY="750.0" mnemonicParsing="false" text="Back" />
+</AnchorPane>

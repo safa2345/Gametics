@@ -1,0 +1,15 @@
+com\mir\gametics\AddGamePageController.class
+module-info.class
+com\mir\gametics\HomePageController.class
+com\mir\gametics\DialogBox.class
+com\mir\gametics\AllGamePageController.class
+com\mir\gametics\SearchGamePageController.class
+com\mir\gametics\LogInStatus.class
+com\mir\gametics\GameHolder.class
+com\mir\gametics\PageLoadNumber.class
+com\mir\gametics\LoginPageController.class
+com\mir\gametics\Game.class
+com\mir\gametics\CreateOnePageController.class
+com\mir\gametics\GameModel.class
+com\mir\gametics\DetailedPageController.class
+com\mir\gametics\Gametics.class

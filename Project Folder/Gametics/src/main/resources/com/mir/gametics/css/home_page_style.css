@@ -1,0 +1,33 @@
+.root {
+    -fx-font-family: "Comic Sans MS";
+    -fx-background-color: #1D1F21;
+}
+
+#title {
+    -fx-text-fill: #D9DBDE;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+}
+
+#description {
+    -fx-text-fill: #6494E6;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.hyperlink {
+    -fx-underline: true;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-font-size: 25px;
+}
+
+.hyperlink:hover,
+.hyperlink:hover:visited {
+    -fx-text-fill: #6494E6 ;
+}
+
+.label {
+    -fx-text-fill: #D9DBDE;
+    -fx-font-size: 20px;
+}
